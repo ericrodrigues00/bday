@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Retroma Vibes';
+  src: url('/fonts/RetromaVibes-Regular.woff2') format('woff2'),
+       url('/fonts/RetromaVibes-Regular.woff') format('woff'),
+       /* Add other font formats if you have them */
+       url('/fonts/RetromaVibes-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
