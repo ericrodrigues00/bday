@@ -31,7 +31,7 @@ function ConfirmPresence() {
     console.log('Confirmado:', names);
     // Aqui será conectado com o backend depois
     try {
-      const response = await fetch('http://localhost:5000/api/confirm', {
+      const response = await fetch(`/api/confirm`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
