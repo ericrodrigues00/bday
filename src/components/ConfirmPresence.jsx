@@ -3,9 +3,11 @@ import {
   Box, Button, TextField, Stack, IconButton
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
 
 function ConfirmPresence() {
   const [names, setNames] = useState(['']);
+  const navigate = useNavigate();
 
   const handleChange = (index, value) => {
     const newNames = [...names];
@@ -18,6 +20,14 @@ function ConfirmPresence() {
   };
 
   const handleSubmit = async () => {
+    const password = '250626';
+    const firstInput = names[0] ? names[0].trim() : '';
+
+    if (firstInput === password) {
+      navigate('/attendees'); // Redirect to attendees list if password matches
+      return; // Stop further execution
+    }
+
     console.log('Confirmado:', names);
     // Aqui será conectado com o backend depois
     try {
