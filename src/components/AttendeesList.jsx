@@ -61,7 +61,7 @@ function AttendeesList() {
     return (
       <Container maxWidth="sm" sx={{ mt: 4, bgcolor: 'background.paper', p: 4, borderRadius: 2, textAlign: 'center' }}>
         <LockOutlinedIcon color="primary" sx={{ fontSize: 60, mb: 2 }} />
-        <Typography variant="h5" gutterBottom color="primary">Acesso Restrito</Typography>
+        <Typography variant="h5" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>Acesso Restrito</Typography>
         <Box component="form" onSubmit={handlePasswordSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <TextField
             label="Senha"
@@ -70,8 +70,14 @@ function AttendeesList() {
             fullWidth
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputLabelProps={{
+              sx: { fontFamily: 'Pacifico, cursive' }
+            }}
+            InputProps={{
+              sx: { fontFamily: 'Montserrat Alternates, sans-serif' }
+            }}
           />
-          <Button variant="contained" color="primary" type="submit">
+          <Button variant="contained" color="primary" type="submit" sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>
             Entrar
           </Button>
         </Box>
@@ -83,7 +89,7 @@ function AttendeesList() {
     return (
       <Container maxWidth="md" sx={{ mt: 4, textAlign: 'center' }}>
         <CircularProgress />
-        <Typography>Loading attendees...</Typography>
+        <Typography sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>Loading attendees...</Typography>
       </Container>
     );
   }
@@ -91,20 +97,20 @@ function AttendeesList() {
   if (error) {
     return (
       <Container maxWidth="md" sx={{ mt: 4 }}>
-        <Alert severity="error">Error loading attendees: {error.message}</Alert>
+        <Alert severity="error" sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>Error loading attendees: {error.message}</Alert>
       </Container>
     );
   }
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, bgcolor: 'background.paper', py: 3, px: 2, borderRadius: 2 }}>
-      <Typography variant="h4" gutterBottom color="primary" sx={{ textAlign: 'center' }}>Lista de Presença Confirmada</Typography>
+      <Typography variant="h4" gutterBottom color="primary" sx={{ textAlign: 'center', fontFamily: 'Pacifico, cursive' }}>Lista de Presença Confirmada</Typography>
       <TableContainer component={Paper} sx={{ boxShadow: 3 }}>
         <Table sx={{ minWidth: 300 }} aria-label="attendees table">
           <TableHead>
             <TableRow sx={{ bgcolor: 'primary.light' }}>
-              <TableCell sx={{ fontWeight: 'bold', color: 'primary.contrastText' }}>Nome</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold', color: 'primary.contrastText' }}>Horário de Confirmação</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', color: 'primary.contrastText', fontFamily: 'Montserrat Alternates, sans-serif' }}>Nome</TableCell>
+              <TableCell align="right" sx={{ fontWeight: 'bold', color: 'primary.contrastText', fontFamily: 'Montserrat Alternates, sans-serif' }}>Horário de Confirmação</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -116,17 +122,17 @@ function AttendeesList() {
                   '&:last-child td, &:last-child th': { border: 0 },
                 }}
               >
-                <TableCell component="th" scope="row" sx={{ color: 'text.primary' }}>
+                <TableCell component="th" scope="row" sx={{ color: 'text.primary', fontFamily: 'Montserrat Alternates, sans-serif' }}>
                   {attendee.name}
                 </TableCell>
-                <TableCell align="right" sx={{ color: 'text.primary' }}>{new Date(attendee.timestamp).toLocaleString()}</TableCell>
+                <TableCell align="right" sx={{ color: 'text.primary', fontFamily: 'Montserrat Alternates, sans-serif' }}>{new Date(attendee.timestamp).toLocaleString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
       {attendees.length === 0 && (
-        <Typography variant="body1" sx={{ mt: 2, textAlign: 'center', color: 'text.secondary' }}>
+        <Typography variant="body1" sx={{ mt: 2, textAlign: 'center', color: 'text.secondary', fontFamily: 'Montserrat Alternates, sans-serif' }}>
           Nenhum convidado confirmado ainda.
         </Typography>
       )}

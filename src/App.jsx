@@ -18,6 +18,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ConfirmPresence from './components/ConfirmPresence';
 import HeroSection from './components/HeroSection';
 import AttendeesList from './components/AttendeesList'; // Import the new component
+import CountdownTimer from './components/CountdownTimer'; // Import the new component
 
 const theme = createTheme({
   palette: {
@@ -36,31 +37,31 @@ const theme = createTheme({
     },
   },
   typography: {
-    h4: { fontSize: '3rem' },
-    h6: { fontSize: '2rem' },
-    body1: { fontSize: '1.4rem' },
+    h4: { fontSize: '3rem', fontFamily: 'Pacifico, cursive' },
+    h6: { fontSize: '2rem', fontFamily: 'Pacifico, cursive' },
+    body1: { fontSize: '1.4rem', fontFamily: 'Montserrat Alternates, sans-serif' },
   },
 });
 
 const detalhes = [
   {
     titulo: 'Data',
-    descricao: 'Dia 28/06 (sexta)',
+    descricao: 'Dia 28/06 (sabado) ≽^•⩊•^≼ ₊˚⊹♡',
     icone: '/fofo1.png', // Mantendo seus caminhos originais
   },
   {
     titulo: 'Horário',
-    descricao: 'A partir das 14h',
+    descricao: '‧₊˚✩彡 ( ^ ᗜ ^ ) ✩彡˚₊‧ A partir das 14h',
     icone: '/fofo2.png', // Mantendo seus caminhos originais
   },
   {
     titulo: 'Local',
-    descricao: 'Churrasqueira do beach tennis – Ibi Aram 2 – Itupeva/SP',
+    descricao: '‧͙⁺˚*･ Churrasqueira do beach tennis – Ibi Aram 2 – Itupeva/SP (∩˃o˂∩)♡‧͙',
     icone: '/fofo5.png', // Mantendo seus caminhos originais
   },
   {
     titulo: 'Atração',
-    descricao: '🎶 Karaokê garantido!',
+    descricao: '( ˶ˆᗜˆ˵ )~♪ Karaokê garantido!',
     icone: '/fofo4.png', // Mantendo seus caminhos originais
   },
 ];
@@ -158,10 +159,10 @@ const DetalheCard = ({ item, index }) => {
           textAlign: { xs: 'center', md: 'left' },
         }}
       >
-        <Typography variant="h6" gutterBottom color="primary">
+        <Typography variant="h6" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
           {item.titulo}
         </Typography>
-        <Typography variant="body1">{item.descricao}</Typography>
+        <Typography variant="body1" sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>{item.descricao}</Typography>
       </CardContent>
     </MuiCard>
   );
@@ -191,7 +192,7 @@ function App() {
                   }}
                 >
                   <Container maxWidth="md" sx={{ px: 0 }}>
-                    <Typography variant="h4" gutterBottom color="primary">
+                    <Typography variant="h4" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
                       Detalhes da Festa
                     </Typography>
                     <Stack spacing={3} sx={{ alignItems: 'center' }}>
@@ -219,9 +220,11 @@ function App() {
                       <Button
                         variant="outlined"
                         color="success"
-                        href="https://maps.app.goo.gl/ufcTXMNBRsUy6DVLA" // Link funcional para o Google Maps
+                        href="https://www.google.com/maps/search/?api=1&query=Churrasqueira+do+beach+tennis+Ibi+Aram+2+Itupeva+SP" // Link funcional para o Google Maps
                         target="_blank"
                         rel="noopener noreferrer"
+                        sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }} // Apply Montserrat font
+                        size="large"
                       >
                         Ver no Google Maps
                       </Button>
@@ -229,15 +232,14 @@ function App() {
 
                     {/* COMO CHEGAR section */}
                     <Box sx={{ mt: 4 }}>
-                      <Typography variant="h6" gutterBottom color="primary">
-                        COMO CHEGAR
+                      <Typography variant="h6" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
+                        Como chegar
                       </Typography>
-                      <Typography variant="body1">
-                        Ir ate ↕️ Barra Funda - terminal de onibus, comprar passagens para itupeva direto pelo guichê ou pelo site (site da vale do tiete) - pegar uber ate o endereço quando chegar no terminal rodoviário de itupeva.
-                        <br /><br />
-                        Ou
-                        <br /><br />
-                        Pegar a linha ruby sentido ↕️ Jundiai e pegar um uber ate o endereço (dividido fica mais em conta)
+                      <Typography variant="body1" sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>
+                      ★Ir ate ↕️ Barra Funda - terminal de onibus, comprar passagens para itupeva direto pelo guichê ou pelo <a href="https://www.valedotiete.com.br/" target="_blank" rel="noopener noreferrer" style={{ color: 'green' }}>site</a> - pegar uber ate o endereço quando chegar no terminal rodoviário de itupeva.
+                        <br />
+                        <br />
+                      ★Pegar a linha ruby sentido ↕️ Jundiai e pegar um uber ate o endereço (dividido fica mais em conta)
                       </Typography>
                     </Box>
 
@@ -254,13 +256,23 @@ function App() {
                   }}
                 >
                   <Container maxWidth="sm" sx={{ px: 0 }}>
-                    <Typography variant="h4" gutterBottom color="primary">
+                    <Typography variant="h4" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
                       Confirmar Presença
                     </Typography>
                     <ConfirmPresence /> {/* Seu componente ConfirmPresence */}
 
-                    {/* Add a link to the Attendees List page */}
-                    
+                    <Box mt={4} textAlign="center">
+                      <Button 
+                        component={Link} 
+                        to="/attendees" 
+                        variant="text" 
+                        color="primary"
+                        sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }} // Apply Montserrat font
+                        size="large"
+                      >
+                        Ver Lista de Convidados Confirmados
+                      </Button>
+                    </Box>
 
                   </Container>
                 </Box>
@@ -282,6 +294,10 @@ function App() {
             <Route path="/attendees" element={<AttendeesList />} />
 
           </Routes>
+
+          {/* Add the Countdown Timer component at the end */}
+          <CountdownTimer />
+
         </Box>
       </Router>
     </ThemeProvider>
@@ -292,14 +308,14 @@ function App() {
 // Remova ou substitua se você tiver os componentes reais.
 const MockHeroSection = () => (
   <Box sx={{ py: 6, bgcolor: 'primary.main', color: 'white', textAlign: 'center' }}>
-    <Typography variant="h2">Bem-vindos à Festa!</Typography>
+    <Typography variant="h2" sx={{ fontFamily: 'Pacifico, cursive' }}>Bem-vindos à Festa!</Typography>
   </Box>
 );
 
 const MockConfirmPresence = () => (
   <Box sx={{ p: 3, border: '1px solid #ddd', borderRadius: 2 }}>
     <Typography variant="body1">Formulário de confirmação aqui...</Typography>
-    <Button variant="contained" sx={{ mt: 2 }}>Confirmar</Button>
+    <Button variant="contained" sx={{ mt: 2 }} size="large">Confirmar</Button>
   </Box>
 );
 

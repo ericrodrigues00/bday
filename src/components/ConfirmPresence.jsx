@@ -65,17 +65,22 @@ function ConfirmPresence() {
           fullWidth
           value={name}
           onChange={(e) => handleChange(index, e.target.value)}
+          InputLabelProps={{
+            sx: { fontFamily: 'Montserrat Alternates, sans-serif' }
+          }}
+          InputProps={{
+            sx: { fontFamily: 'Montserrat Alternates, sans-serif' }
+          }}
         />
       ))}
-      <Box display="flex" justifyContent="flex-start">
-       
-      </Box>
+      
       <Box textAlign="center">
         <Button
           variant="contained"
           color="success"
           onClick={handleSubmit}
           size="large"
+          sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}
         >
           Confirmar
         </Button>
