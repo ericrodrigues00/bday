@@ -31,7 +31,7 @@ function ConfirmPresence() {
     console.log('Confirmado:', names);
     // Aqui será conectado com o backend depois
     try {
-      const response = await fetch(`/api/confirm`, {
+      const response = await fetch('https://bday-backend.onrender.com/api/confirm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -223,7 +223,7 @@ function App() {
                         href="https://www.google.com/maps/search/?api=1&query=Churrasqueira+do+beach+tennis+Ibi+Aram+2+Itupeva+SP" // Link funcional para o Google Maps
                         target="_blank"
                         rel="noopener noreferrer"
-                        sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }} // Apply Montserrat font
+                        sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}
                         size="large"
                       >
                         Ver no Google Maps
@@ -268,7 +268,7 @@ function App() {
                         variant="text" 
                         color="primary"
                         sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }} // Apply Montserrat font
-                        size="large"
+                        size="large" // Make the button slightly bigger
                       >
                         Ver Lista de Convidados Confirmados
                       </Button>

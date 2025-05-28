@@ -29,7 +29,7 @@ function AttendeesList() {
     if (authenticated) {
       const fetchAttendees = async () => {
         try {
-          const response = await fetch(`/api/attendees`);
+          const response = await fetch('https://bday-backend.onrender.com/api/attendees');
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
