@@ -261,18 +261,7 @@ function App() {
                     </Typography>
                     <ConfirmPresence /> {/* Seu componente ConfirmPresence */}
 
-                    <Box mt={4} textAlign="center">
-                      <Button 
-                        component={Link} 
-                        to="/attendees" 
-                        variant="text" 
-                        color="primary"
-                        sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }} // Apply Montserrat font
-                        size="large" // Make the button slightly bigger
-                      >
-                        Ver Lista de Convidados Confirmados
-                      </Button>
-                    </Box>
+                  
 
                   </Container>
                 </Box>

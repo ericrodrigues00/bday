@@ -105,6 +105,9 @@ function AttendeesList() {
   return (
     <Container maxWidth="md" sx={{ mt: 4, bgcolor: 'background.paper', py: 3, px: 2, borderRadius: 2 }}>
       <Typography variant="h4" gutterBottom color="primary" sx={{ textAlign: 'center', fontFamily: 'Pacifico, cursive' }}>Lista de Presença Confirmada</Typography>
+      <Typography variant="h6" gutterBottom color="primary" sx={{ textAlign: 'center', fontFamily: 'Montserrat Alternates, sans-serif', mb: 3 }}>
+        Total de Confirmações: {attendees.length}
+      </Typography>
       <TableContainer component={Paper} sx={{ boxShadow: 3 }}>
         <Table sx={{ minWidth: 300 }} aria-label="attendees table">
           <TableHead>
