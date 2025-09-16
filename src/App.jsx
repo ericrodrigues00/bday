@@ -16,24 +16,24 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 // Se não, você precisará criá-los ou remover as importações e usos.
 // Para este exemplo, vou criar mocks simples no final do arquivo se não forem providos.
 import ConfirmPresence from './components/ConfirmPresence';
-import HeroSection from './components/HeroSection';
+import ImageCarousel from './components/ImageCarousel';
 import AttendeesList from './components/AttendeesList'; // Import the new component
 import CountdownTimer from './components/CountdownTimer'; // Import the new component
 
 const theme = createTheme({
   palette: {
     background: {
-      default: '#6A8E22', // verde oliva
-      paper: '#F8E9D6',   // bege
+      default: '#FFEDC6', // verde oliva
+      paper: '#FDF4E0',   // bege
     },
     primary: {
-      main: '#D2747F', // rosa antigo
+      main: '#D6BC7C', // rosa antigo
     },
     secondary: {
-      main: '#F1A6C5', // rosa claro
+      main: '#FDF9E6', // rosa claro
     },
     success: {
-      main: '#6A8E22', // A shade of green
+      main: '#C19D35', // A shade of green
     },
   },
   typography: {
@@ -45,23 +45,23 @@ const theme = createTheme({
 
 const detalhes = [
   {
-    titulo: 'Data',
-    descricao: 'Dia 28/06 (sabado) ≽^•⩊•^≼ ₊˚⊹♡',
+    titulo: 'Celebração',
+    descricao: 'Lhe convidamos para celebrar as nossas bodas de 23 anos',
     icone: '/fofo1.png', // Mantendo seus caminhos originais
   },
   {
-    titulo: 'Horário',
-    descricao: '‧₊˚✩彡 ( ^ ᗜ ^ ) ✩彡˚₊‧ A partir das 14h',
+    titulo: 'Data',
+    descricao: '27 de setembro de 2025',
     icone: '/fofo2.png', // Mantendo seus caminhos originais
   },
   {
     titulo: 'Local',
-    descricao: '‧͙⁺˚*･ Churrasqueira do beach tennis – Ibi Aram 2 – Itupeva/SP (∩˃o˂∩)♡‧͙',
-    icone: '/fofo5.png', // Mantendo seus caminhos originais
+    descricao: 'Salão de festas do Ibi Aram 2 – Itupeva/SP',
+    icone: '/fofo3.png', // Mantendo seus caminhos originais
   },
   {
-    titulo: 'Atração',
-    descricao: '( ˶ˆᗜˆ˵ )~♪ Karaokê garantido!',
+    titulo: 'Atrações',
+    descricao: 'Diversas atrações e entretenimento. Não esqueça de levar sua bebida!',
     icone: '/fofo4.png', // Mantendo seus caminhos originais
   },
 ];
@@ -180,7 +180,7 @@ function App() {
           <Routes>
             <Route path="/" element={(
               <>
-                <HeroSection /> {/* Seu componente HeroSection */}
+                <ImageCarousel /> {/* Carousel component with auto-cycling images */}
 
                 <Box
                   sx={{
@@ -193,7 +193,7 @@ function App() {
                 >
                   <Container maxWidth="md" sx={{ px: 0 }}>
                     <Typography variant="h4" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
-                      Detalhes da Festa
+                      Larisse e Morácio: 23 anos
                     </Typography>
                     <Stack spacing={3} sx={{ alignItems: 'center' }}>
                       {detalhes.map((item, index) => (
@@ -230,18 +230,7 @@ function App() {
                       </Button>
                     </Box>
 
-                    {/* COMO CHEGAR section */}
-                    <Box sx={{ mt: 4 }}>
-                      <Typography variant="h6" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
-                        Como chegar
-                      </Typography>
-                      <Typography variant="body1" sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>
-                      ★Ir ate ↕️ Barra Funda - terminal de onibus, comprar passagens para itupeva direto pelo guichê ou pelo <a href="https://www.valedotiete.com.br/" target="_blank" rel="noopener noreferrer" style={{ color: 'green' }}>site</a> - pegar uber ate o endereço quando chegar no terminal rodoviário de itupeva.
-                        <br />
-                        <br />
-                      ★Pegar a linha ruby sentido ↕️ Jundiai e pegar um uber ate o endereço (dividido fica mais em conta)
-                      </Typography>
-                    </Box>
+           
 
                   </Container>
                 </Box>

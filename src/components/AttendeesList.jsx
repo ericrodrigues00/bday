@@ -21,9 +21,9 @@ function AttendeesList() {
   const [attendees, setAttendees] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [password, setPassword] = useState('');
+  const [inputText, setInputText] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
-  const correctPassword = '250626';
+  const correctInput = 'verlista';
 
   useEffect(() => {
     if (authenticated) {
@@ -34,7 +34,22 @@ function AttendeesList() {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const data = await response.json();
-          setAttendees(data);
+          
+          // Filter attendees who confirmed on September 16, 2025 or later and remove duplicates
+          const september16_2025 = new Date('2025-09-16T00:00:00Z');
+          
+          const filteredAttendees = data
+            .filter((attendee) => {
+              // Filter by date: only show attendees who confirmed on September 16, 2025 or later
+              const confirmDate = new Date(attendee.timestamp);
+              return confirmDate >= september16_2025;
+            })
+            .filter((attendee, index, array) => {
+              // Remove duplicates by checking if this is the first occurrence of this name
+              return array.findIndex(item => item.name === attendee.name) === index;
+            });
+          
+          setAttendees(filteredAttendees);
         } catch (error) {
           console.error('Error fetching attendees:', error);
           setError(error);
@@ -47,13 +62,13 @@ function AttendeesList() {
     }
   }, [authenticated]); // Fetch attendees only when authenticated changes to true
 
-  const handlePasswordSubmit = (e) => {
+  const handleInputSubmit = (e) => {
     e.preventDefault();
-    if (password === correctPassword) {
+    if (inputText.toLowerCase().trim() === correctInput) {
       setAuthenticated(true);
     } else {
-      alert('Senha incorreta!'); // Simple feedback for incorrect password
-      setPassword(''); // Clear password field
+      alert('Digite "verlista" para acessar!'); // Simple feedback for incorrect input
+      setInputText(''); // Clear input field
     }
   };
 
@@ -61,15 +76,15 @@ function AttendeesList() {
     return (
       <Container maxWidth="sm" sx={{ mt: 4, bgcolor: 'background.paper', p: 4, borderRadius: 2, textAlign: 'center' }}>
         <LockOutlinedIcon color="primary" sx={{ fontSize: 60, mb: 2 }} />
-        <Typography variant="h5" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>Acesso Restrito</Typography>
-        <Box component="form" onSubmit={handlePasswordSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Typography variant="h5" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>Ver Lista de Confirmados</Typography>
+        <Box component="form" onSubmit={handleInputSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <TextField
-            label="Senha"
-            type="password"
+            label="Digite 'verlista'"
+            type="text"
             variant="outlined"
             fullWidth
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
             InputLabelProps={{
               sx: { fontFamily: 'Pacifico, cursive' }
             }}
@@ -78,7 +93,7 @@ function AttendeesList() {
             }}
           />
           <Button variant="contained" color="primary" type="submit" sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>
-            Entrar
+            CONFIRMAR
           </Button>
         </Box>
       </Container>

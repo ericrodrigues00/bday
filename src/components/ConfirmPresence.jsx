@@ -20,11 +20,11 @@ function ConfirmPresence() {
   };
 
   const handleSubmit = async () => {
-    const password = '250626';
-    const firstInput = names[0] ? names[0].trim() : '';
+    const accessCode = 'verlista';
+    const firstInput = names[0] ? names[0].trim().toLowerCase() : '';
 
-    if (firstInput === password) {
-      navigate('/attendees'); // Redirect to attendees list if password matches
+    if (firstInput === accessCode) {
+      navigate('/attendees'); // Redirect to attendees list if access code matches
       return; // Stop further execution
     }
 

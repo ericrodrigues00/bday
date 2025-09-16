@@ -8,9 +8,9 @@ import {
 import { useTheme } from '@mui/material/styles';
 
 function CountdownTimer() {
-  // Target date and time: June 28, 2025, 2 PM GMT-3
-  // In UTC, this is June 28, 2025, 5 PM (17:00)
-  const targetDate = new Date(Date.UTC(2025, 5, 28, 17, 0, 0));
+  // Target date and time: September 27, 2025, 2 PM GMT-3
+  // In UTC, this is September 27, 2025, 5 PM (17:00)
+  const targetDate = new Date(Date.UTC(2025, 8, 27, 17, 0, 0));
 
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
   const theme = useTheme();
