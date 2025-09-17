@@ -11,17 +11,17 @@ function ImageCarousel() {
     '/carrousel/pic (4).jpeg',
     '/carrousel/pic (5).jpeg',
     '/carrousel/pic (17).jpeg',
-    '/carrousel/pic (21).jpeg',
+   
     '/carrousel/pic (22).jpeg',
   ];
 
-  // Auto-cycling effect - change image every 10 seconds
+  // Auto-cycling effect - change image every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10000); // 10 seconds
+    }, 5000); // 5 seconds
 
     return () => clearInterval(interval);
   }, [images.length]);

@@ -37,21 +37,21 @@ const theme = createTheme({
     },
   },
   typography: {
-    h4: { fontSize: '3rem', fontFamily: 'Pacifico, cursive' },
-    h6: { fontSize: '2rem', fontFamily: 'Pacifico, cursive' },
-    body1: { fontSize: '1.4rem', fontFamily: 'Montserrat Alternates, sans-serif' },
+    h4: { fontSize: '3rem', fontFamily: 'Pacifico, cursive', fontWeight: 200 },
+    h6: { fontSize: '2rem', fontFamily: 'Pacifico, cursive', fontWeight: 200 },
+    body1: { fontSize: '1.4rem', fontFamily: 'Montserrat Alternates, sans-serif', fontWeight: 200 },
   },
 });
 
 const detalhes = [
   {
     titulo: 'Celebração',
-    descricao: 'Lhe convidamos para celebrar as nossas bodas de 23 anos',
+    descricao: 'Venha celebrar conosco as nossas bodas de 23 anos!',
     icone: '/fofo1.png', // Mantendo seus caminhos originais
   },
   {
     titulo: 'Data',
-    descricao: '27 de setembro de 2025',
+    descricao: '27 de setembro de 2025 as 13:00',
     icone: '/fofo2.png', // Mantendo seus caminhos originais
   },
   {
@@ -61,7 +61,7 @@ const detalhes = [
   },
   {
     titulo: 'Atrações',
-    descricao: 'Diversas atrações e entretenimento. Não esqueça de levar sua bebida!',
+    descricao: 'Musica ao vivo! Não esqueça de levar sua bebida de preferência',
     icone: '/fofo4.png', // Mantendo seus caminhos originais
   },
 ];
@@ -159,10 +159,10 @@ const DetalheCard = ({ item, index }) => {
           textAlign: { xs: 'center', md: 'left' },
         }}
       >
-        <Typography variant="h6" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
+        <Typography variant="h6" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive', fontWeight: 200 }}>
           {item.titulo}
         </Typography>
-        <Typography variant="body1" sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}>{item.descricao}</Typography>
+        <Typography variant="body1" sx={{ fontFamily: 'Montserrat Alternates, sans-serif', fontWeight: 200 }}>{item.descricao}</Typography>
       </CardContent>
     </MuiCard>
   );
@@ -192,8 +192,8 @@ function App() {
                   }}
                 >
                   <Container maxWidth="md" sx={{ px: 0 }}>
-                    <Typography variant="h4" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
-                      Larisse e Morácio: 23 anos
+                    <Typography variant="h4" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive', fontWeight: 200 }}>
+                      Larisse e Morácio: 23 anos de história.
                     </Typography>
                     <Stack spacing={3} sx={{ alignItems: 'center' }}>
                       {detalhes.map((item, index) => (
@@ -245,7 +245,7 @@ function App() {
                   }}
                 >
                   <Container maxWidth="sm" sx={{ px: 0 }}>
-                    <Typography variant="h4" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive' }}>
+                    <Typography variant="h4" gutterBottom color="primary" sx={{ fontFamily: 'Pacifico, cursive', fontWeight: 200 }}>
                       Confirmar Presença
                     </Typography>
                     <ConfirmPresence /> {/* Seu componente ConfirmPresence */}
