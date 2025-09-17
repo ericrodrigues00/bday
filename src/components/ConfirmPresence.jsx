@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import {
-  Box, Button, TextField, Stack, IconButton
+  Box, Button, TextField, Stack, IconButton, LinearProgress, Typography, Alert
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 
 function ConfirmPresence() {
   const [names, setNames] = useState(['']);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (index, value) => {
@@ -28,10 +31,20 @@ function ConfirmPresence() {
       return; // Stop further execution
     }
 
+    // Limpar mensagens anteriores
+    setSuccessMessage('');
+    setErrorMessage('');
+    setIsLoading(true);
+
     console.log('Confirmado:', names);
-    // Aqui será conectado com o backend depois
+    
     try {
-      const response = await fetch('https://bday-backend.onrender.com/api/confirm', {
+      // Criar um timeout de 5 segundos
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout')), 5000)
+      );
+
+      const fetchPromise = fetch('https://bday-backend.onrender.com/api/confirm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,19 +52,27 @@ function ConfirmPresence() {
         body: JSON.stringify({ names: names.filter(name => name.trim() !== '') }), // Send non-empty names
       });
 
+      // Race entre fetch e timeout
+      const response = await Promise.race([fetchPromise, timeoutPromise]);
       const data = await response.json();
 
       if (response.ok) {
         console.log('Success:', data);
-        alert('Presença confirmada com sucesso!'); // Or a more sophisticated UI feedback
+        setSuccessMessage('Presença confirmada com sucesso!');
         setNames(['']); // Reset form after successful submission
       } else {
         console.error('Error:', data);
-        alert(`Erro ao confirmar presença: ${data.message || response.statusText}`); // Show error message
+        setErrorMessage(`Erro ao confirmar presença: ${data.message || response.statusText}`);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Erro ao conectar com o servidor.');
+      if (error.message === 'Timeout') {
+        setErrorMessage('Um erro ocorreu, por favor tente novamente');
+      } else {
+        setErrorMessage('Erro ao conectar com o servidor');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -65,6 +86,7 @@ function ConfirmPresence() {
           fullWidth
           value={name}
           onChange={(e) => handleChange(index, e.target.value)}
+          disabled={isLoading}
           InputLabelProps={{
             sx: { fontFamily: 'Montserrat Alternates, sans-serif' }
           }}
@@ -74,15 +96,74 @@ function ConfirmPresence() {
         />
       ))}
       
+      {/* Barra de progresso durante loading */}
+      {isLoading && (
+        <Box>
+          <LinearProgress 
+            sx={{ 
+              height: 6, 
+              borderRadius: 3,
+              backgroundColor: 'rgba(0,0,0,0.1)',
+              '& .MuiLinearProgress-bar': {
+                backgroundColor: '#C19D35'
+              }
+            }} 
+          />
+          <Typography 
+            variant="body2" 
+            textAlign="center" 
+            sx={{ 
+              mt: 1, 
+              fontFamily: 'Montserrat Alternates, sans-serif',
+              fontWeight: 200,
+              color: 'text.secondary'
+            }}
+          >
+            Enviando...
+          </Typography>
+        </Box>
+      )}
+
+      {/* Mensagem de sucesso */}
+      {successMessage && (
+        <Alert 
+          severity="success" 
+          sx={{ 
+            fontFamily: 'Montserrat Alternates, sans-serif',
+            fontWeight: 200
+          }}
+        >
+          {successMessage}
+        </Alert>
+      )}
+
+      {/* Mensagem de erro */}
+      {errorMessage && (
+        <Alert 
+          severity="error" 
+          sx={{ 
+            fontFamily: 'Montserrat Alternates, sans-serif',
+            fontWeight: 200
+          }}
+        >
+          {errorMessage}
+        </Alert>
+      )}
+      
       <Box textAlign="center">
         <Button
           variant="contained"
           color="success"
           onClick={handleSubmit}
           size="large"
-          sx={{ fontFamily: 'Montserrat Alternates, sans-serif' }}
+          disabled={isLoading}
+          sx={{ 
+            fontFamily: 'Montserrat Alternates, sans-serif',
+            fontWeight: 200,
+            opacity: isLoading ? 0.6 : 1
+          }}
         >
-          Confirmar
+          {isLoading ? 'Enviando...' : 'Confirmar'}
         </Button>
       </Box>
     </Stack>
